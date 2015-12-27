@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="TableContainer"></div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#TableContainer').jtable({
+            title: 'Record Listing',
+            paging: true, //Enable paging
+            pageSize: 10, //Set page size (default: 10)
+            sorting: true, //Enable sorting
+            defaultSorting: 'Description ASC', //Set default sorting
+            actions: {
+                listAction: '@ViewBag.ListUrl',
+                deleteAction: '@ViewBag.DeleteUrl',
+                updateAction: '@ViewBag.UpdateUrl',
+                createAction: '@ViewBag.AddUrl'
+            },
+            fields: @Html.Raw(ViewBag.FieldData)
+
+            });
+
+        //Load student list from server
+        $('#TableContainer').jtable('load');
+    });
+
+</script>
